@@ -6,6 +6,7 @@
 __author__ = "QidiLiu"
 
 from pynput.keyboard import Controller, Key
+from time import sleep
 
 keyboard_controller = Controller()
 exception = {'alt' : Key.alt, 
@@ -61,12 +62,16 @@ exception = {'alt' : Key.alt,
 
 def coding_helper(combo):
     for k in combo:
+        sleep(0.1)
         if k not in exception:
             keyboard_controller.press(k)
+            sleep(0.1)
             keyboard_controller.release(k)
         else:
             keyboard_controller.press(exception[k])
+            sleep(0.1)
             keyboard_controller.release(exception[k])
+        sleep(0.1)
 
 if __name__ == '__main__':
     coding_helper(['esc', 'i', 'end', ';', 'enter'])
